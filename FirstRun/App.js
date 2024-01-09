@@ -1,32 +1,68 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
-const logoImg =require("./assets/adaptive-icon.png")
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  ScrollView,
+  Button
+} from "react-native";
+const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hi Rafi!</Text>
-      <StatusBar style="auto" />
-      <View style={styles.bordered}>
-        {/* notice how the white text had to be added inside another text tag */}
-        <Text>
-          <Text style={styles.txtWhite}>YO! </Text>
-          This be another text
-        </Text>
+      <ScrollView>
+        <Text style={styles.rafiStyle}>Hi Rafi ^-^</Text>
 
-        {/* the SOURCE PROPS FOR Image EXPECT A NUMBER!!! So what happens when we passing logoImg as a value for source??
+        {/* instead of onClick in React Native buttons have onPress */}
+        <Button title="is a button" onPress={()=>{alert("button pressed")}}/>
+        <StatusBar style="auto" />
+        <View style={styles.bordered}>
+          <Text>
+            <Text style={styles.txtWhite}>YO! </Text>
+            {/* notice how the white text had to be added inside another text tag */}
+            This be another text
+          </Text>
+
+          {/* the SOURCE PROPS FOR Image EXPECT A NUMBER. So what happens when we passing logoImg as a value for source??
         we are actually passing a NUMBER that is refrence an image in the assets folder */}
-       <Image source={logoImg} style={{width: 100, height:100}}/>  
-      </View>
+          <Image source={logoImg} style={{ width: 100, height: 100 }} />
+        </View>
 
-      {/* so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
+        {/* NETWORK IMAGE 
+      so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
       also it is MANDATORY to set width n height for network images*/}
-      <Image source={{uri:'https://picsum.photos/id/870/200/300?grayscale&blur=2'}} style={{width: 200, height:300}}/>
+        <Image
+          source={{
+            uri: "https://picsum.photos/id/870/200/300?grayscale&blur=2",
+          }}
+          style={{ width: 200, height: 300 }}
+        />
+
+        {/*kinda sad but you need to have a child element to make background image show??  */}
+        <ImageBackground source={logoImg} style={{ flex: 1 }}>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.{"\n\n"}Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum.
+          </Text>
+        </ImageBackground>
 
 
-      <ImageBackground source={logoImg} style={{flex:1}}>
-        <Text> image text</Text>
-      </ImageBackground>
+      </ScrollView>
     </View>
   );
 }
@@ -37,10 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: "plum",
     alignItems: "center",
     justifyContent: "center",
+    padding: 60
   },
   bordered: {
-    borderColor:"#666",
-    borderWidth:"3px",
+    borderColor: "#666",
+    borderWidth: "3px",
     width: "100%",
     height: 100,
     backgroundColor: "#6699cc",
@@ -49,4 +86,9 @@ const styles = StyleSheet.create({
   txtWhite: {
     color: "white",
   },
+  rafiStyle: {
+    textAlign:"center",
+    fontSize:20,
+    marginBottom:20
+  }
 });
