@@ -6,19 +6,46 @@ import {
   Image,
   ImageBackground,
   ScrollView,
-  Button
+  Button,
+  Pressable
 } from "react-native";
+
+import React, {useState} from "react";
 const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
+
+  const [boxToggle, setBoxToggler] = useState(false)
+
+  const JimDoe =()=>{
+    setBoxToggler((prev)=>!prev)
+  }
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.rafiStyle}>Hi Rafi ^-^</Text>
 
-        {/* instead of onClick in React Native buttons have onPress */}
-        <Button title="is a button" onPress={()=>{alert("button pressed")}}/>
+        {/* instead of onClick in React Native buttons have onPress and color and disabled property*/}
+        <Button title="is a button" onPress={() => { alert("button pressed") }} />
+        <Button title="is a button" color="red" onPress={() => { alert("red button pressed") }} />
+        <Button title="is a button" onPress={() => { alert("button pressed") }} disabled />
         <StatusBar style="auto" />
+
+        {/* NETWORK IMAGE 
+      so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
+      also it is MANDATORY to set width n height for network images*/}
+      <Pressable onPress={()=>JimDoe()}>
+          <Image
+            source={{
+              uri: "https://picsum.photos/id/870/200/300?grayscale&blur=2",
+            }}
+            style={{ width: 200, height: 300, alignSelf: "center" }}
+            
+            
+          />
+      </Pressable>
+
+        {boxToggle ? 
         <View style={styles.bordered}>
           <Text>
             <Text style={styles.txtWhite}>YO! </Text>
@@ -28,18 +55,11 @@ export default function App() {
 
           {/* the SOURCE PROPS FOR Image EXPECT A NUMBER. So what happens when we passing logoImg as a value for source??
         we are actually passing a NUMBER that is refrence an image in the assets folder */}
-          <Image source={logoImg} style={{ width: 100, height: 100 }} />
+          <Image source={logoImg} style={{ width: 100, height: 100, alignSelf: "flex-end" }} />
         </View>
+        :null}
 
-        {/* NETWORK IMAGE 
-      so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
-      also it is MANDATORY to set width n height for network images*/}
-        <Image
-          source={{
-            uri: "https://picsum.photos/id/870/200/300?grayscale&blur=2",
-          }}
-          style={{ width: 200, height: 300 }}
-        />
+
 
         {/*kinda sad but you need to have a child element to make background image show??  */}
         <ImageBackground source={logoImg} style={{ flex: 1 }}>
@@ -87,8 +107,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   rafiStyle: {
-    textAlign:"center",
-    fontSize:20,
-    marginBottom:20
+    textAlign: "center",
+    fontSize: 20,
+    marginBottom: 20
   }
 });
