@@ -23,6 +23,11 @@ export default function App() {
   }
   return (
     <View style={styles.container}>
+
+      {/* backgroundColor property is SPECIFIC to andriod apps and not iOS devices  *** hidden */}
+      <StatusBar backgroundColor="lightGreen" barStyle="light-content" />
+
+
       <ScrollView>
         <Text style={styles.rafiStyle}>Hi Rafi ^-^</Text>
 
@@ -30,10 +35,10 @@ export default function App() {
         <Button title="Open Modal" onPress={() => setmodalToggle(true)} />
         <Button title="is a button" color="red" onPress={() => { alert("red button pressed") }} />
         <Button title="is a button" onPress={() => { alert("button pressed") }} disabled />
-        <StatusBar style="auto" />
+
 
         {/* has onPress it also has onLongPress as well as onPressOut */}
-        <Pressable onPress={() => JimDoe()} onLongPress={()=>alert("Long long Press ^-^")}>
+        <Pressable onPress={() => JimDoe()} onLongPress={() => alert("Long long Press ^-^")}>
 
           {/* NETWORK IMAGE 
           so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
@@ -86,18 +91,18 @@ export default function App() {
 
       </ScrollView>
 
-      
+
       <Modal
         visible={modalToggle}
-        onRequestClose={()=>setmodalToggle(false)}
+        onRequestClose={() => setmodalToggle(false)}
         animationType="slide" // none, slide, fade  --- by default its none
         presentationStyle="formSheet" //'fullScreen', 'pageSheet' -  work only in protraite mode, 'formSheet', 'overFullScreen'
       >
         {/*  do we need another view INSIDE the modal.. apprantly */}
         <Text style={styles.modalTxt}> what's up asdfdfghjk</Text>
-        <Button title="Close Modal" color="red" onPress={() => setmodalToggle(false)}/>
+        <Button title="Close Modal" color="red" onPress={() => setmodalToggle(false)} />
       </Modal>
-      
+
     </View>
   );
 }
@@ -126,11 +131,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20
   },
-  modalTxt:{
-    fontSize:30,
-    color:"#036",
-    fontWeight:"bold",
-    textAlign:"center"
+  modalTxt: {
+    fontSize: 30,
+    color: "#036",
+    fontWeight: "bold",
+    textAlign: "center"
   }
 
 });
