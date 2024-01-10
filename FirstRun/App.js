@@ -7,7 +7,7 @@ import {
   ImageBackground,
   ScrollView,
   Button,
-  Pressable
+  Pressable, Modal
 } from "react-native";
 
 import React, { useState } from "react";
@@ -15,10 +15,11 @@ const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
 
-  const [boxToggle, setBoxToggler] = useState(false)
+  const [boxToggle, setBoxToggle] = useState(false)
+  const [modalToggle, setmodalToggle] = useState(false)
 
   const JimDoe = () => {
-    setBoxToggler((prev) => !prev)
+    setBoxToggle((prev) => !prev)
   }
   return (
     <View style={styles.container}>
@@ -26,7 +27,7 @@ export default function App() {
         <Text style={styles.rafiStyle}>Hi Rafi ^-^</Text>
 
         {/* instead of onClick in React Native buttons have onPress and color and disabled property*/}
-        <Button title="is a button" onPress={() => { alert("button pressed") }} />
+        <Button title="Open Modal" onPress={() => setmodalToggle(true)} />
         <Button title="is a button" color="red" onPress={() => { alert("red button pressed") }} />
         <Button title="is a button" onPress={() => { alert("button pressed") }} disabled />
         <StatusBar style="auto" />
@@ -84,6 +85,19 @@ export default function App() {
 
 
       </ScrollView>
+
+      
+      <Modal
+        visible={modalToggle}
+        onRequestClose={()=>setmodalToggle(false)}
+        animationType="slide" // none, slide, fade  --- by default its none
+        presentationStyle="formSheet" //'fullScreen', 'pageSheet' -  work only in protraite mode, 'formSheet', 'overFullScreen'
+      >
+        {/*  do we need another view INSIDE the modal.. apprantly */}
+        <Text style={styles.modalTxt}> what's up asdfdfghjk</Text>
+        <Button title="Close Modal" color="red" onPress={() => setmodalToggle(false)}/>
+      </Modal>
+      
     </View>
   );
 }
@@ -111,5 +125,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     marginBottom: 20
+  },
+  modalTxt:{
+    fontSize:30,
+    color:"#036",
+    fontWeight:"bold",
+    textAlign:"center"
   }
+
 });
