@@ -10,15 +10,15 @@ import {
   Pressable
 } from "react-native";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 const logoImg = require("./assets/adaptive-icon.png");
 
 export default function App() {
 
   const [boxToggle, setBoxToggler] = useState(false)
 
-  const JimDoe =()=>{
-    setBoxToggler((prev)=>!prev)
+  const JimDoe = () => {
+    setBoxToggler((prev) => !prev)
   }
   return (
     <View style={styles.container}>
@@ -31,33 +31,34 @@ export default function App() {
         <Button title="is a button" onPress={() => { alert("button pressed") }} disabled />
         <StatusBar style="auto" />
 
-        {/* NETWORK IMAGE 
-      so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
-      also it is MANDATORY to set width n height for network images*/}
-      <Pressable onPress={()=>JimDoe()}>
+        {/* has onPress it also has onLongPress as well as onPressOut */}
+        <Pressable onPress={() => JimDoe()} onLongPress={()=>alert("Long long Press ^-^")}>
+
+          {/* NETWORK IMAGE 
+          so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
+          also it is MANDATORY to set width n height for network images*/}
           <Image
             source={{
               uri: "https://picsum.photos/id/870/200/300?grayscale&blur=2",
             }}
             style={{ width: 200, height: 300, alignSelf: "center" }}
-            
-            
+
           />
-      </Pressable>
+        </Pressable>
 
-        {boxToggle ? 
-        <View style={styles.bordered}>
-          <Text>
-            <Text style={styles.txtWhite}>YO! </Text>
-            {/* notice how the white text had to be added inside another text tag */}
-            This be another text
-          </Text>
+        {boxToggle ?
+          <View style={styles.bordered}>
+            <Text>
+              <Text style={styles.txtWhite}>YO! </Text>
+              {/* notice how the white text had to be added inside another text tag */}
+              This be another text
+            </Text>
 
-          {/* the SOURCE PROPS FOR Image EXPECT A NUMBER. So what happens when we passing logoImg as a value for source??
+            {/* the SOURCE PROPS FOR Image EXPECT A NUMBER. So what happens when we passing logoImg as a value for source??
         we are actually passing a NUMBER that is refrence an image in the assets folder */}
-          <Image source={logoImg} style={{ width: 100, height: 100, alignSelf: "flex-end" }} />
-        </View>
-        :null}
+            <Image source={logoImg} style={{ width: 100, height: 100, alignSelf: "flex-end" }} />
+          </View>
+          : null}
 
 
 
