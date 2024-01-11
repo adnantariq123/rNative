@@ -7,7 +7,9 @@ import {
   ImageBackground,
   ScrollView,
   Button,
-  Pressable, Modal
+  Pressable, Modal,
+  ActivityIndicator,
+  Alert
 } from "react-native";
 
 import React, { useState } from "react";
@@ -24,6 +26,7 @@ export default function App() {
   return (
     <View style={styles.container}>
 
+      {/* is loading==true ?  then use  ^-^ <ActivityIndicator size={"large"} color={"white"}/> */}
       {/* backgroundColor property is SPECIFIC to andriod apps and not iOS devices  *** hidden */}
       <StatusBar backgroundColor="lightGreen" barStyle="light-content" />
 
@@ -33,12 +36,31 @@ export default function App() {
 
         {/* instead of onClick in React Native buttons have onPress and color and disabled property*/}
         <Button title="Open Modal" onPress={() => setmodalToggle(true)} />
-        <Button title="is a button" color="red" onPress={() => { alert("red button pressed") }} />
+
+        {/* ALERT WITH ARRAY OF BTN
+        Alert.alert will accept an ARRAY of obj to add more than one btn  */}
+        <Button title="Rafi btn" color="red" onPress={() => Alert.alert("Hello Rafi^-^", "How do you do", [
+          {
+            text: "Cancel",
+            onPress: () => console.log("cancel pressed")
+          },
+          {
+            text: "OK",
+            onPress: () => console.log("O.K pressed")
+          },
+          {
+            text: "whatever",
+            onPress: () => console.log("Whatever")
+          }
+
+        ])} />
+
+        {/* disabled btn   */}
         <Button title="is a button" onPress={() => { alert("button pressed") }} disabled />
 
 
         {/* has onPress it also has onLongPress as well as onPressOut */}
-        <Pressable onPress={() => JimDoe()} onLongPress={() => alert("Long long Press ^-^")}>
+        <Pressable onPress={() => JimDoe()} onLongPress={() => Alert.alert("Long long Press ^-^")}>
 
           {/* NETWORK IMAGE 
           so when using a network image we need to convert to an object ADD a key called uri.... key you know, key-value-pair 
