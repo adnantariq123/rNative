@@ -15,6 +15,10 @@ import {
 import React, { useState } from "react";
 const logoImg = require("./assets/adaptive-icon.png");
 
+import Greet from "./assets/components/Greet";
+
+import SuperStyling from "./assets/components/styles/LongHornStyles";
+
 export default function App() {
 
   const [boxToggle, setBoxToggle] = useState(false)
@@ -24,7 +28,9 @@ export default function App() {
     setBoxToggle((prev) => !prev)
   }
   return (
-    <View style={styles.container}>
+    <View style={SuperStyling.container}>
+
+      <Greet/>
 
       {/* is loading==true ?  then use  ^-^ <ActivityIndicator size={"large"} color={"white"}/> */}
       {/* backgroundColor property is SPECIFIC to andriod apps and not iOS devices  *** hidden */}
@@ -32,7 +38,7 @@ export default function App() {
 
 
       <ScrollView>
-        <Text style={styles.rafiStyle}>Hi Rafi ^-^</Text>
+        <Text style={SuperStyling.rafiStyle}>Hi Rafi ^-^</Text>
 
         {/* instead of onClick in React Native buttons have onPress and color and disabled property*/}
         <Button title="Open Modal" onPress={() => setmodalToggle(true)} />
@@ -75,9 +81,9 @@ export default function App() {
         </Pressable>
 
         {boxToggle ?
-          <View style={styles.bordered}>
+          <View style={SuperStyling.bordered}>
             <Text>
-              <Text style={styles.txtWhite}>YO! </Text>
+              <Text style={SuperStyling.txtWhite}>YO! </Text>
               {/* notice how the white text had to be added inside another text tag */}
               This be another text
             </Text>
@@ -121,7 +127,7 @@ export default function App() {
         presentationStyle="formSheet" //'fullScreen', 'pageSheet' -  work only in protraite mode, 'formSheet', 'overFullScreen'
       >
         {/*  do we need another view INSIDE the modal.. apprantly */}
-        <Text style={styles.modalTxt}> what's up asdfdfghjk</Text>
+        <Text style={SuperStyling.modalTxt}> what's up asdfdfghjk</Text>
         <Button title="Close Modal" color="red" onPress={() => setmodalToggle(false)} />
       </Modal>
 
@@ -129,35 +135,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "plum",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 60
-  },
-  bordered: {
-    borderColor: "#666",
-    borderWidth: "3px",
-    width: "100%",
-    height: 100,
-    backgroundColor: "#6699cc",
-    //color: "white" adding color here did NOT cary over the white color to the text. hence you have to use txtWhite
-  },
-  txtWhite: {
-    color: "white",
-  },
-  rafiStyle: {
-    textAlign: "center",
-    fontSize: 20,
-    marginBottom: 20
-  },
-  modalTxt: {
-    fontSize: 30,
-    color: "#036",
-    fontWeight: "bold",
-    textAlign: "center"
-  }
-
-});
