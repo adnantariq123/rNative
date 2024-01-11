@@ -18,5 +18,27 @@ export default Boxing= StyleSheet.create({
     },
     lightGreen: {
         backgroundColor:"lightgreen"
+    },
+    //there are no common shadow style for both iOs as well as andriod... the following box shadow will work in iOS   
+    boxShadow: {
+        shadowColor: "#333", // but shadowColor works on both ^-^
+        shadowOffset: {
+            width:6,
+            height:6
+        },
+        shadowOpacity:0.6,
+        shadowRadius:4
+    },
+    // for andriods we need 
+    andriodShadow: {
+        elevation:10
+    },
+    darkMode: {
+        backgroundColor: "#333",
+        color: "#fff", // this shit here will not get carried over the the <Text> tag 
+        marginBottom:20,
+        padding:20,
+        borderRadius:15
+
     }
 })
