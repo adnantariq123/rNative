@@ -15,7 +15,8 @@ export default Box=({children, propsStyle})=>{
 const styles= StyleSheet.create ({
     box: {
         backgroundColor: "#fff",
-        padding:20
+        padding:20,
+        width: "20%",
     },
     text: {
         fontSize:24,
