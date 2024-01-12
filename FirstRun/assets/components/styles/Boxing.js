@@ -1,6 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export default Boxing= StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "plum",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 60
+      },
     box: {
         width:"25%", // notice how the fucking percentage needs to be a string...
         height:100,
