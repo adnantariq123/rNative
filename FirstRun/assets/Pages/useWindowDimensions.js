@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, useWindowDimensions } from "react-native"; // useWindowDimensions is the recommended appraoch for responsive styles
+import { Text, View, StyleSheet, useWindowDimensions, } from "react-native"; // useWindowDimensions is the recommended appraoch for responsive styles
 
 
 export default function WindowD() {

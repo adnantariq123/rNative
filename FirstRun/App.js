@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, StyleSheet, SafeAreaView, Platform } from "react-native";
 
 
 // The purpose of SafeAreaView is to render content within the safe area boundaries of a device. It is currently only applicable to iOS devices with iOS version 11 or later.
@@ -19,6 +19,8 @@ export default function App() {
     box: {
       padding: 20,
       backgroundColor: "lightblue",
+      borderWidth:4,
+      borderColor:Platform.isPad ? "red": "blue" // this new feature allows you to check is it was indeed an iPad
     },
     text: {
       fontSize: 24,
