@@ -18,7 +18,7 @@ export default function App() {
     },
     box: {
       padding: 20,
-      backgroundColor: "lightblue",
+      backgroundColor:Platform.OS==="ios"? "lightblue" : "red", // this will show lightblue for ALL iOS devices like iPhone, iPads
       borderWidth:4,
       borderColor:Platform.isPad ? "red": "blue" // this new feature allows you to check is it was indeed an iPad
     },
