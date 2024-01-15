@@ -1,39 +1,39 @@
-import { Text, View, StyleSheet, useWindowDimensions } from "react-native"; 
+import { Text, View, StyleSheet, SafeAreaView } from "react-native";
 
+
+// The purpose of SafeAreaView is to render content within the safe area boundaries of a device. It is currently only applicable to iOS devices with iOS version 11 or later.
+//  Safe Area's paddings reflect the physical limitation of the screen, such as rounded corners or camera notches   *** SafeAreaView stills needs a bit of style==> flex:1
 
 export default function App() {
-
-  const windowWidthx = useWindowDimensions().width;
-  const windowHeight = useWindowDimensions().height;
-
   const styler = StyleSheet.create({
-    container: {
-      backgroundColor:"plum",
+    safeContainer: {
       flex:1,
-      alignItems: "center",
-      justifyContent:"center"
+      backgroundColor: "plum", // to avoid that white space that would show up on the top.. toggle this to see that white space
+
+    },
+    container: {
+      backgroundColor: "plum",
+      flex: 1,
+
     },
     box: {
-
-      width: windowWidthx > 500 ? "100%": "70%", 
-      height: windowHeight > 600 ? "40%": "70%",
-      backgroundColor:"lightblue",
-      alignItems: "center",
-      justifyContent:"center"
+      padding: 20,
+      backgroundColor: "lightblue",
     },
-
+    text: {
+      fontSize: 24,
+      fontWeight: "bold",
+      textAlign: "center",
+    },
   });
 
   return (
+    <SafeAreaView style={styler.safeContainer}>
     <View style={styler.container}>
       <View style={styler.box}>
-
-        <Text style={{fontSize:30, letterSpacing: windowWidthx > 500 ? 20: 0}}>Hello Rafi!</Text>
+        <Text style={styler.text}>Hello</Text>
       </View>
     </View>
+    </SafeAreaView>
   );
 }
-
-
-
-

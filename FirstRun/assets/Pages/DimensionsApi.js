@@ -2,7 +2,7 @@ import { Text, View, StyleSheet, Dimensions } from "react-native"; // Dimensions
 import React, {useState, useEffect} from 'react';
 
 
-export default function App() {
+export default function AppDimension() {
   const [dimensions, setDimensions] = useState({
     window: Dimensions.get("screen")
   })
