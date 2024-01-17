@@ -26,6 +26,12 @@ export default function PokiApp() {
     name: {
       fontSize: 20,
     },
+    listHeader: {
+      fontSize:35,
+      color: "red",
+      textAlign: "center",
+      marginBottom:20
+    }
   });
 
   return (
@@ -74,6 +80,8 @@ export default function PokiApp() {
           }
 
           ListEmptyComponent={<Text> No items found :-(</Text>}
+          ListHeaderComponent={<Text style={Styles.listHeader}>Some header huh</Text>}
+          //ListFooterComponent 
         /> 
         {/* FlatList ends here! */}
         
