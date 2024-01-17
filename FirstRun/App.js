@@ -16,7 +16,7 @@ export default function PokiApp() {
       backgroundColor: "#666",
     },
     nameHolder: {
-      marginBottom: 10,
+      //marginBottom: 10, // lets get ride of the marginBottom becuase we are getting fancy and using ItemSeparatorComponent
       borderRadius: 8,
       borderWidth: 4,
       borderColor: "#333",
@@ -43,12 +43,13 @@ export default function PokiApp() {
             })}
           </View>
         </ScrollView> 
-        
+        this is lazy loaded
         Flatlist component renders only the items currently in view, making it highly performant for long lists which might have thousands of stuff.
         */}
 
         <FlatList
-          data={pokemonList}
+          data={pokemonList} // to turn on ListEmptyComponent comment this line out
+          //data={[]}
           renderItem={({ item }) => {
             return (
               <View key={item.id} style={Styles.nameHolder}>
@@ -56,7 +57,26 @@ export default function PokiApp() {
               </View>
             );
           }}
-        />
+          //keyExtractor={} tells the list to use the ids for the react keys instead of the default key property.
+
+          //horizontal this is ok!
+
+          // think of ItemSeparatorComponent as the :before and :after of a div -  need to find a way to better center shit
+          ItemSeparatorComponent={
+            <View
+              style={{
+                height: 10,
+                backgroundColor: "plum",
+                width: "50%",
+                left: "25%",
+              }}
+            />
+          }
+
+          ListEmptyComponent={<Text> No items found :-(</Text>}
+        /> 
+        {/* FlatList ends here! */}
+        
       </SafeAreaView>
     </>
   );
