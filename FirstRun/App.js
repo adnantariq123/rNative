@@ -1,12 +1,63 @@
-import { Text, View, StyleSheet, SafeAreaView, Platform } from "react-native";
-import ExerciseOne from "./assets/components/Exercise1/ExApp"
+import {
+  Text,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Platform,
+  ScrollView,
+  FlatList,
+} from "react-native";
+import pokemonList from "./data.json";
 
-
-export default function App() {
-
+export default function PokiApp() {
+  const Styles = StyleSheet.create({
+    container: {
+      padding: 30,
+      backgroundColor: "#666",
+    },
+    nameHolder: {
+      marginBottom: 10,
+      borderRadius: 8,
+      borderWidth: 4,
+      borderColor: "#333",
+      backgroundColor: "#fff",
+      padding: 10,
+    },
+    name: {
+      fontSize: 20,
+    },
+  });
 
   return (
-      <ExerciseOne></ExerciseOne>
-    
+    <>
+      <SafeAreaView>
+        {/* <ScrollView>
+          <View style={Styles.container}>
+            {pokemonList.map((poki) => {
+              
+              return (
+                <View key={poki.id} style={Styles.nameHolder}>
+                  <Text style={Styles.name}>{poki.name}</Text>
+                </View>
+              );
+            })}
+          </View>
+        </ScrollView> 
+        
+        Flatlist component renders only the items currently in view, making it highly performant for long lists which might have thousands of stuff.
+        */}
+
+        <FlatList
+          data={pokemonList}
+          renderItem={({ item }) => {
+            return (
+              <View key={item.id} style={Styles.nameHolder}>
+                <Text style={Styles.name}>{item.name}</Text>
+              </View>
+            );
+          }}
+        />
+      </SafeAreaView>
+    </>
   );
 }
