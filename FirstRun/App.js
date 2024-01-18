@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import pokemonList from "./data.json";
 
+import Header from "./assets/components/FlatList/Fgreeter"
+
 export default function PokiApp() {
   const Styles = StyleSheet.create({
     container: {
@@ -26,11 +28,18 @@ export default function PokiApp() {
     name: {
       fontSize: 20,
     },
-    listHeader: {
+    noItemsFound : {
+      //textAlign:"center",
       fontSize:35,
-      color: "red",
-      textAlign: "center",
-      marginBottom:20
+      color: "red",     
+    },
+    CenterMe :{
+      justifyContent:"center",
+      alignItems: "center",
+      alignContent:"center",
+      borderWidth: 4,
+      borderColor: "#333",
+      flex:1
     }
   });
 
@@ -79,8 +88,8 @@ export default function PokiApp() {
             />
           }
 
-          ListEmptyComponent={<Text> No items found :-(</Text>}
-          ListHeaderComponent={<Text style={Styles.listHeader}>Some header huh</Text>}
+          ListEmptyComponent={<View style={Styles.CenterMe}><Text style={Styles.noItemsFound}> No items found :-(</Text></View>}
+          ListHeaderComponent={<Header/>}
           //ListFooterComponent 
         /> 
         {/* FlatList ends here! */}
